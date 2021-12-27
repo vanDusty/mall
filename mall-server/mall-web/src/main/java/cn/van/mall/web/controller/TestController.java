@@ -3,7 +3,6 @@ package cn.van.mall.web.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 
 /**
@@ -21,7 +20,7 @@ public class TestController {
 
     @ApiOperation(value = "sayHello")
     @GetMapping(value = "/sayHello")
-    public String sayHello(MultipartFile excel) {
+    public String sayHello() {
         return "Hello word";
     }
 

@@ -18,7 +18,7 @@
 
 ### 重新起航
 
-2021年12月26日，圣诞节后一天。
+- 2021年12月26日，圣诞节后一天。
 
 ## 模块设计
 
@@ -26,14 +26,19 @@
 
 - mall-database - 原子层 - 操作数据库
 - mall-system - 系统层 - 监控系统 + 权限设计
-- mall-common - 服务层 - 公用组件封装
+- mall-core - 业务层 - 商品相关业务
+- mall-support - 服务层 - 公用组件封装
 - mall-web - web端 - 统一接口管理（后续删除该模块）
+- mall-generator -代码自动生成
+- mall-front - 前端（准备把【若依】搬过来用）
 
 ## 技术框架
 
-### 基础框架
+### 基础
 
 - spring-boot-starter-parent 2.1.12.RELEASE
+- mysql-connector-java 8.0.17
+- mybatis-plus-boot-starter 3.4.3.4
 
 
 ### 组件
