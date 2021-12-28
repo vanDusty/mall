@@ -15,9 +15,9 @@ logging:
 # Spring配置
 spring:
   datasource:
-    url: jdbc:mysql://47.111.118.152:3306/mall
-    username: mall
-    password: password
+    url: jdbc:mysql://47.111.118.152:3306/wechat
+    username: wechat
+    password: 6cSD8hhZ3G3xhtsT
     driverClassName: com.mysql.cj.jdbc.Driver
 # MyBatis配置
 mybatis-plus:
