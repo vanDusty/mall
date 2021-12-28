@@ -1,5 +1,9 @@
 ### IDEA ##
-.idea
+.idea/
+*.iml
+*.class
+*.log
+logs/
 
 ### Eclipse ###
 .metadata
