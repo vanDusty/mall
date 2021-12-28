@@ -44,8 +44,8 @@
 
 - springfox-swagger2 2.9.2
 - lombok 1.8.4
-
+- mybatis-plus-generator 3.5.1
 
 ## 参照项目
 
-暂无
+- [RuoYi-Vue](https://gitee.com/y_project/RuoYi-Vue) 搬用前端代码 
