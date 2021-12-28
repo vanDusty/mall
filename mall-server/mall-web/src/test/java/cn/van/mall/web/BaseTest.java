@@ -2,6 +2,8 @@ package cn.van.mall.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * Copyright (C), 2015-2021, 风尘博客
@@ -11,6 +13,7 @@ import org.junit.Test;
  * Description:
  * Version： V1.0
  */
+@RunWith(SpringRunner.class)
 @Slf4j
 public class BaseTest {
 

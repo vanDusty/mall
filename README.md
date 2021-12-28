@@ -29,7 +29,6 @@
 - mall-core - 业务层 - 商品相关业务
 - mall-support - 服务层 - 公用组件封装
 - mall-web - web端 - 统一接口管理（后续删除该模块）
-- mall-generator -代码自动生成
 - mall-front - 前端（准备把【若依】搬过来用）
 
 ## 技术框架

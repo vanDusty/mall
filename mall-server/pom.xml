@@ -13,7 +13,6 @@
         <module>mall-support</module>
         <module>mall-system</module>
         <module>mall-core</module>
-        <module>mall-generator</module>
         <module>mall-web</module>
     </modules>
 
@@ -34,6 +33,8 @@
         <mall.version>1.0.0-SNAPSHOT</mall.version>
         <mysql.version>8.0.17</mysql.version>
         <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
+        <mybatis.plus.generator.version>3.5.1</mybatis.plus.generator.version>
+        <freemarker.version>2.3.31</freemarker.version>
         <swagger2.version>2.9.2</swagger2.version>
     </properties>
 
@@ -63,11 +64,6 @@
             </dependency>
             <dependency>
                 <groupId>cn.van</groupId>
-                <artifactId>mall-generator</artifactId>
-                <version>${mall.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.van</groupId>
                 <artifactId>mall-web</artifactId>
                 <version>${mall.version}</version>
             </dependency>
@@ -84,6 +80,19 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis.plus.version}</version>
             </dependency>
+            <!-- mybatis-plus generator -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis.plus.generator.version}</version>
+            </dependency>
+            <!-- freemarker 模板引擎 -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
+            <!-- mybatis-plus end -->
             <!--Swagger-ui配置-->
             <dependency>
                 <groupId>io.springfox</groupId>
