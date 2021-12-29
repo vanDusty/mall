@@ -8,11 +8,14 @@
         <result column="menu_name" property="menuName" />
         <result column="parent_id" property="parentId" />
         <result column="order_num" property="orderNum" />
-        <result column="url" property="url" />
-        <result column="target" property="target" />
+        <result column="path" property="path" />
+        <result column="component" property="component" />
+        <result column="query" property="query" />
+        <result column="is_frame" property="isFrame" />
+        <result column="is_cache" property="isCache" />
         <result column="menu_type" property="menuType" />
         <result column="visible" property="visible" />
-        <result column="is_refresh" property="isRefresh" />
+        <result column="status" property="status" />
         <result column="perms" property="perms" />
         <result column="icon" property="icon" />
         <result column="create_by" property="createBy" />
@@ -24,7 +27,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        menu_id, menu_name, parent_id, order_num, url, target, menu_type, visible, is_refresh, perms, icon, create_by, create_time, update_by, update_time, remark
+        menu_id, menu_name, parent_id, order_num, path, component, `query`, is_frame, is_cache, menu_type, visible, `status`, perms, icon, create_by, create_time, update_by, update_time, remark
     </sql>
 
 </mapper>

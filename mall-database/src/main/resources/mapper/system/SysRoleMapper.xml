@@ -9,6 +9,8 @@
         <result column="role_key" property="roleKey" />
         <result column="role_sort" property="roleSort" />
         <result column="data_scope" property="dataScope" />
+        <result column="menu_check_strictly" property="menuCheckStrictly" />
+        <result column="dept_check_strictly" property="deptCheckStrictly" />
         <result column="status" property="status" />
         <result column="del_flag" property="delFlag" />
         <result column="create_by" property="createBy" />
@@ -20,7 +22,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        role_id, role_name, role_key, role_sort, data_scope, `status`, del_flag, create_by, create_time, update_by, update_time, remark
+        role_id, role_name, role_key, role_sort, data_scope, menu_check_strictly, dept_check_strictly, `status`, del_flag, create_by, create_time, update_by, update_time, remark
     </sql>
 
 </mapper>

@@ -4,9 +4,9 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.van.mall.database.entity.system.SysJobDO">
-        <id column="job_id" property="jobId" />
-        <id column="job_name" property="jobName" />
-        <id column="job_group" property="jobGroup" />
+        <result column="job_id" property="jobId" />
+        <result column="job_name" property="jobName" />
+        <result column="job_group" property="jobGroup" />
         <result column="invoke_target" property="invokeTarget" />
         <result column="cron_expression" property="cronExpression" />
         <result column="misfire_policy" property="misfirePolicy" />
