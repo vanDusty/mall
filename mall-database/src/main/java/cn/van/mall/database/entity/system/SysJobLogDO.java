@@ -1,25 +1,15 @@
 package cn.van.mall.database.entity.system;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.Setter;
 
-/**
- * <p>
- * 定时任务调度日志表
- * </p>
- *
- * @author VanFan
- * @since 2021-12-29
- */
-@Getter
-@Setter
+import lombok.Data;;
+
+@Data
 @TableName("sys_job_log")
 public class SysJobLogDO extends Model<SysJobLogDO> {
 
@@ -28,7 +18,7 @@ public class SysJobLogDO extends Model<SysJobLogDO> {
     /**
      * 任务日志ID
      */
-    @TableId(value = "job_log_id", type = IdType.AUTO)
+    @TableId(value = "job_log_id")
     private Long jobLogId;
 
     /**

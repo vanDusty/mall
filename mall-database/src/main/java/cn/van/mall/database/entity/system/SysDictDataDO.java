@@ -1,25 +1,23 @@
 package cn.van.mall.database.entity.system;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
- * <p>
- * 字典数据表
- * </p>
- *
- * @author VanFan
- * @since 2021-12-29
+ * Copyright (C), 2017-2022, 风尘博客
+ * 公众号 : 风尘博客
+ * @Author:   VanFan
+ * Date:     2021/12/29 09:51 下午
+ * Description: SysDictDataDO
+ * Version： V1.0
  */
-@Getter
-@Setter
+
+@Data
 @TableName("sys_dict_data")
 public class SysDictDataDO extends Model<SysDictDataDO> {
 
@@ -28,7 +26,7 @@ public class SysDictDataDO extends Model<SysDictDataDO> {
     /**
      * 字典编码
      */
-    @TableId(value = "dict_code", type = IdType.AUTO)
+    @TableId(value = "dict_code")
     private Long dictCode;
 
     /**

@@ -5,19 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-/**
- * <p>
- * 定时任务调度表
- * </p>
- *
- * @author VanFan
- * @since 2021-12-29
- */
-@Getter
-@Setter
+@Data
 @TableName("sys_job")
 public class SysJobDO extends Model<SysJobDO> {
 
