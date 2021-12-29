@@ -15,7 +15,7 @@
         <!-- 内部模块引用 -->
         <dependency>
             <groupId>cn.van</groupId>
-            <artifactId>mall-database</artifactId>
+            <artifactId>mall-system</artifactId>
         </dependency>
 
         <!-- spring boot start -->

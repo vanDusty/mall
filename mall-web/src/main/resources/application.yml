@@ -22,6 +22,6 @@ spring:
 # MyBatis配置
 mybatis-plus:
   # 搜索指定包别名
-  typeAliasesPackage: cn.van.mall.database.entity
+  typeAliasesPackage: cn.van.mall.**.entity
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
-  mapperLocations: classpath*:mapper/*Mapper.xml
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
