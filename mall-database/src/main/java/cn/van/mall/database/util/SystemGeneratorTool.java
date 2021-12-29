@@ -28,9 +28,9 @@ public class SystemGeneratorTool {
     /**
      * 数据库
      */
-    private static final String DB_URL = "jdbc:mysql://47.111.118.152:3306/wechat";
-    private static final String DB_USERNAME = "wechat";
-    private static final String DB_PASSWORD = "9371702021";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/mall";
+    private static final String DB_USERNAME = "mall";
+    private static final String DB_PASSWORD = "mall";
     /**
      * 项目信息
      */
@@ -41,7 +41,7 @@ public class SystemGeneratorTool {
     /**
      * 多个表用,分开
      */
-    private static final String TABLE_NAMES = "t_user";
+    private static final String TABLE_NAMES = "sys_config,sys_dept,sys_dict_data,sys_dict_type,sys_logininfor,sys_menu,sys_notice,sys_oper_log,sys_post,sys_role,sys_role_dept,sys_role_menu,sys_user,sys_user_online,sys_user_post,sys_user_role,gen_table,gen_table_column,sys_job,sys_job_log";
 
     /**
      * 数据源配置
@@ -79,12 +79,12 @@ public class SystemGeneratorTool {
                 .packageConfig((scanner, builder) -> builder
                         .parent("cn.van.mall")//父包名，默认值:com.baomidou
                         .moduleName(moduleName)//父包模块名，默认值:无
-                        .entity("entity")//Entity 包名，默认值:entity
-                        .service("atom")//Service 包名，默认值:service
-                        .serviceImpl("atom.impl")//Service Impl 包名，默认值:service.impl
-                        .mapper("mapper")//Mapper 包名，默认值:mapper
+                        .entity("entity.system")//Entity 包名，默认值:entity
+                        .service("atom.system")//Service 包名，默认值:service
+                        .serviceImpl("atom.system.impl")//Service Impl 包名，默认值:service.impl
+                        .mapper("mapper.system")//Mapper 包名，默认值:mapper
                         .xml("mapper.xml")//Mapper XML 包名，默认值:mapper.xml
-                        .controller("controller")//Controller 包名，默认值:controller
+                        .controller("controller.system")//Controller 包名，默认值:controller
                         //.other("other")//自定义文件包名,	输出自定义文件时所用到的包名
                         .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "src/main/resources/mapper")) //路径配置信息，Collections.singletonMap(OutputFile.mapperXml, "D://")
                         .build()//加入构建队列
