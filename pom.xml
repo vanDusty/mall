@@ -33,6 +33,7 @@
         <mall.version>1.0.0-SNAPSHOT</mall.version>
         <mysql.version>8.0.17</mysql.version>
         <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
+        <pagehelper.boot.version>1.4.0</pagehelper.boot.version>
         <mybatis.plus.generator.version>3.5.1</mybatis.plus.generator.version>
         <freemarker.version>2.3.31</freemarker.version>
         <swagger2.version>2.9.2</swagger2.version>
@@ -79,6 +80,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis.plus.version}</version>
+            </dependency>
+            <!-- pagehelper 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.boot.version}</version>
             </dependency>
             <!-- mybatis-plus generator -->
             <dependency>

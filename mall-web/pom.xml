@@ -18,13 +18,22 @@
             <artifactId>mall-system</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.van</groupId>
+            <artifactId>mall-support</artifactId>
+        </dependency>
+
         <!-- spring boot start -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!-- spring boot end -->
-
+        <!-- pagehelper 分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+        </dependency>
         <!--Swagger-ui配置-->
         <dependency>
             <groupId>io.springfox</groupId>
