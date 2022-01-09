@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Copyright (C), 2017-2022, 风尘博客
@@ -137,10 +138,35 @@ public class SysUserDO extends Model<SysUserDO> {
     @TableField("remark")
     private String remark;
 
+    /**
+     * 部门
+     */
+    private SysDeptDO dept;
 
-    @Override
-    public Serializable pkVal() {
-        return this.userId;
+    /**
+     * 角色对象
+     */
+    private List<SysRoleDO> roles;
+
+    /**
+     * 角色组
+     */
+    private Long[] roleIds;
+
+    /**
+     * 岗位组
+     */
+    private Long[] postIds;
+
+    public SysUserDO() {
+
     }
 
+    public SysUserDO(String userName) {
+        this.userName = userName;
+    }
+
+    public SysUserDO(Long userId) {
+        this.userId = userId;
+    }
 }

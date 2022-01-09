@@ -23,11 +23,93 @@
         <result column="update_by" property="updateBy" />
         <result column="update_time" property="updateTime" />
         <result column="remark" property="remark" />
+        <association property="dept"    column="dept_id" javaType="cn.van.mall.system.entity.SysDeptDO" resultMap="deptResult" />
+        <collection  property="roles"   javaType="java.util.List" resultMap="roleResult" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        user_id, dept_id, user_name, nick_name, user_type, email, phonenumber, sex, avatar, `password`, `status`, del_flag, login_ip, login_date, create_by, create_time, update_by, update_time, remark
+    <resultMap id="deptResult" type="cn.van.mall.system.entity.SysDeptDO">
+        <id     property="deptId"   column="dept_id"     />
+        <result property="parentId" column="parent_id"   />
+        <result property="deptName" column="dept_name"   />
+        <result property="orderNum" column="order_num"   />
+        <result property="leader"   column="leader"      />
+        <result property="status"   column="dept_status" />
+    </resultMap>
+<!--    暂时没用到-->
+    <resultMap id="roleResult" type="cn.van.mall.system.entity.SysRoleDO">
+        <id     property="roleId"       column="role_id"        />
+        <result property="roleName"     column="role_name"      />
+        <result property="roleKey"      column="role_key"       />
+        <result property="roleSort"     column="role_sort"      />
+        <result property="dataScope"     column="data_scope"    />
+        <result property="status"       column="role_status"    />
+    </resultMap>
+
+    <sql id="QueryConditions">
+        <if test="userId != null and userId != 0">
+            AND u.user_id = #{userId}
+        </if>
+        <if test="userName != null and userName != ''">
+            AND u.user_name like concat('%', #{userName}, '%')
+        </if>
+        <if test="status != null and status != ''">
+            AND u.status = #{status}
+        </if>
+        <if test="phoneNum != null and phoneNum != ''">
+            AND u.phonenumber like concat('%', #{phoneNum}, '%')
+        </if>
+        /* todo 这是在查询什么*/
+        <if test="deptId != null and deptId != 0">
+            AND (u.dept_id = #{deptId} OR u.dept_id IN ( SELECT t.dept_id FROM sys_dept t WHERE find_in_set(#{deptId}, ancestors) ))
+        </if>
     </sql>
+
+    <select id="selectUserList" parameterType="cn.van.mall.system.param.SysUserParam" resultMap="BaseResultMap">
+        select u.user_id, u.dept_id, u.nick_name, u.user_name, u.email, u.avatar, u.phonenumber, u.password, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark, d.dept_name, d.leader from sys_user u
+        left join sys_dept d on u.dept_id = d.dept_id
+        where u.del_flag = '0'
+        <include refid="QueryConditions"/>
+    </select>
+
+    <select id="selectAllocatedUserList" parameterType="cn.van.mall.system.param.SysUserParam" resultMap="BaseResultMap">
+        select distinct u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.phonenumber, u.status, u.create_time
+        from sys_user u
+        left join sys_dept d on u.dept_id = d.dept_id
+        left join sys_user_role ur on u.user_id = ur.user_id
+        left join sys_role r on r.role_id = ur.role_id
+        where u.del_flag = '0' and r.role_id = #{roleId}
+        <include refid="QueryConditions"/>
+    </select>
+
+    <select id="selectUnassignedUserList" parameterType="cn.van.mall.system.param.SysUserParam" resultMap="BaseResultMap">
+        select distinct u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.phonenumber, u.status, u.create_time
+        from sys_user u
+        left join sys_dept d on u.dept_id = d.dept_id
+        left join sys_user_role ur on u.user_id = ur.user_id
+        left join sys_role r on r.role_id = ur.role_id
+        where u.del_flag = '0' and (r.role_id != #{roleId} or r.role_id IS NULL)
+          /* todo 这个子查询干啥的*/
+        and u.user_id not in (select u.user_id from sys_user u inner join sys_user_role ur on u.user_id = ur.user_id and ur.role_id = #{roleId})
+        <include refid="QueryConditions"/>
+    </select>
+
+
+    <select id="selectUserByParam" parameterType="String" resultMap="BaseResultMap">
+        select u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.avatar, u.phonenumber, u.password, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,
+               d.dept_id, d.parent_id, d.dept_name, d.order_num, d.leader, d.status as dept_status,
+               r.role_id, r.role_name, r.role_key, r.role_sort, r.data_scope, r.status as role_status
+        from sys_user u
+                 left join sys_dept d on u.dept_id = d.dept_id
+                 left join sys_user_role ur on u.user_id = ur.user_id
+                 left join sys_role r on r.role_id = ur.role_id
+        <where>
+            <if test="userId != null and userId != 0">
+                AND u.user_id = #{userId}
+            </if>
+            <if test="userName != null and userName != ''">
+                AND u.user_name = #{userName}
+            </if>
+        </where>
+    </select>
 
 </mapper>
