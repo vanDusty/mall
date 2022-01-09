@@ -2,6 +2,7 @@ package cn.van.mall.web.mapper;
 
 import cn.van.mall.system.atom.SystemUserAtom;
 import cn.van.mall.system.entity.SysUserDO;
+import cn.van.mall.system.model.SysUserInfoDTO;
 import cn.van.mall.system.param.SysUserParam;
 import cn.van.mall.web.BaseTest;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +51,7 @@ public class SysUserMapperTest extends BaseTest{
     public void selectUserList() {
         SysUserParam param = new SysUserParam();
         param.setUserName("admin");
-        List<SysUserDO> list = systemUserAtom.selectUserList(param);
+        List<SysUserInfoDTO> list = systemUserAtom.selectUserList(param);
         log.info("selectUserList {}", list);
     }
 
@@ -58,7 +59,7 @@ public class SysUserMapperTest extends BaseTest{
     public void selectUserByRole() {
         SysUserParam param = new SysUserParam();
         param.setRoleId(1L);
-        List<SysUserDO> list = systemUserAtom.selectAllocatedUserList(param);
+        List<SysUserInfoDTO> list = systemUserAtom.selectAllocatedUserList(param);
         log.info("selectAllocatedUserList {}", list);
         list = systemUserAtom.selectUnassignedUserList(param);
         log.info("selectUnassignedUserList {}", list);
@@ -66,10 +67,10 @@ public class SysUserMapperTest extends BaseTest{
 
     @Test
     public void getUser() {
-        SysUserDO sysUserDO = systemUserAtom.selectUserByUserId(2L);
-        log.info("selectUserByUserId {}", sysUserDO);
-        sysUserDO = systemUserAtom.selectUserByUserName("vanfan");
-        log.info("selectUserByUserName {}", sysUserDO);
+        SysUserInfoDTO userInfoDTO = systemUserAtom.selectUserByUserId(2L);
+        log.info("selectUserByUserId {}", userInfoDTO);
+        userInfoDTO = systemUserAtom.selectUserByUserName("vanfan");
+        log.info("selectUserByUserName {}", userInfoDTO);
     }
 
     @Test

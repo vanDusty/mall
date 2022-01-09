@@ -1,7 +1,9 @@
 package cn.van.mall.system.atom;
 
+import cn.van.mall.system.convert.SysUserInfoConvert;
 import cn.van.mall.system.entity.SysUserDO;
 import cn.van.mall.system.mapper.SysUserMapper;
+import cn.van.mall.system.model.SysUserInfoDTO;
 import cn.van.mall.system.param.SysUserParam;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
@@ -24,6 +26,9 @@ public class SystemUserAtom {
     @Resource
     private SysUserMapper sysUserMapper;
 
+    @Resource
+    private SysUserInfoConvert userInfoConvert;
+
     /**
      * 新增用户信息
      * @param param
@@ -39,8 +44,8 @@ public class SystemUserAtom {
      * @param param 用户信息
      * @return 用户信息集合信息
      */
-    public List<SysUserDO> selectUserList(SysUserParam param) {
-        return sysUserMapper.selectUserList(param);
+    public List<SysUserInfoDTO> selectUserList(SysUserParam param) {
+        return userInfoConvert.doSToDtoS(sysUserMapper.selectUserList(param));
     }
 
     /**
@@ -49,8 +54,8 @@ public class SystemUserAtom {
      * @param param 用户信息 + roleId(必填项)
      * @return 用户信息集合信息
      */
-    public List<SysUserDO> selectAllocatedUserList(SysUserParam param){
-        return sysUserMapper.selectAllocatedUserList(param);
+    public List<SysUserInfoDTO> selectAllocatedUserList(SysUserParam param){
+        return userInfoConvert.doSToDtoS(sysUserMapper.selectAllocatedUserList(param));
     }
 
     /**
@@ -59,8 +64,8 @@ public class SystemUserAtom {
      * @param param 用户信息 + roleId(非填项)
      * @return 用户信息集合信息
      */
-    public List<SysUserDO> selectUnassignedUserList(SysUserParam param){
-        return sysUserMapper.selectUnassignedUserList(param);
+    public List<SysUserInfoDTO> selectUnassignedUserList(SysUserParam param){
+        return userInfoConvert.doSToDtoS(sysUserMapper.selectUnassignedUserList(param));
     }
 
     /**
@@ -68,13 +73,13 @@ public class SystemUserAtom {
      * @param userName
      * @return
      */
-    public SysUserDO selectUserByUserName(String userName) {
+    public SysUserInfoDTO selectUserByUserName(String userName) {
         SysUserDO userDO = sysUserMapper.selectUserByParam(new HashMap<String, Object>(8){
             {
                 put("userName", userName);
             }
         });
-        return userDO;
+        return userInfoConvert.doToDTO(userDO);
     }
 
     /**
@@ -82,13 +87,13 @@ public class SystemUserAtom {
      * @param userId
      * @return
      */
-    public SysUserDO selectUserByUserId(Long userId) {
+    public SysUserInfoDTO selectUserByUserId(Long userId) {
         SysUserDO userDO = sysUserMapper.selectUserByParam(new HashMap<String, Object>(8){
             {
                 put("userId", userId);
             }
         });
-        return userDO;
+        return userInfoConvert.doToDTO(userDO);
     }
 
     /**
