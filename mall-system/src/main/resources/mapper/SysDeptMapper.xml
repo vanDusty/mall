@@ -25,4 +25,73 @@
         dept_id, parent_id, ancestors, dept_name, order_num, leader, phone, email, `status`, del_flag, create_by, create_time, update_by, update_time
     </sql>
 
+    <select id="selectListByParam" parameterType="cn.van.mall.system.param.SysDeptParam" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from sys_dept d
+        <where>
+            <if test="delFlag != null and delFlag != ''">
+                AND d.del_flag = '0'
+            </if>
+            <if test="deptId != null and deptId != 0">
+                AND dept_id = #{deptId}
+            </if>
+            <if test="parentId != null and parentId != 0">
+                AND parent_id = #{parentId}
+            </if>
+            <if test="deptName != null and deptName != ''">
+                AND dept_name like concat('%', #{deptName}, '%')
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="specialDeptId != null and specialDeptId != 0">
+                AND find_in_set(#{specialDeptId}, ancestors)
+            </if>
+        </where>
+        order by d.parent_id, d.order_num
+    </select>
+    <select id="selectDeptListByRoleId" parameterType="cn.van.mall.system.param.SysDeptParam" resultType="java.lang.Long">
+        select d.dept_id
+        from sys_dept d
+        left join sys_role_dept rd on d.dept_id = rd.dept_id
+        where rd.role_id = #{roleId}
+        <if test="deptCheckStrictly">
+            and d.dept_id not in (select d.parent_id from sys_dept d inner join sys_role_dept rd on d.dept_id = rd.dept_id and rd.role_id = #{roleId})
+        </if>
+        order by d.parent_id, d.order_num
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(1) from sys_dept
+        <where>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="status != null">
+                AND del_flag = '0'
+            </if>
+            <if test="specialDeptId != null and specialDeptId != 0">
+                AND find_in_set(#{specialDeptId}, ancestors)
+            </if>
+            <if test="parentId != null and parentId != 0">
+                AND parent_id = #{parentId}
+            </if>
+            <if test="deptName != null and deptName != ''">
+                AND dept_name = #{deptName}
+            </if>
+
+        </where>
+    </select>
+    <update id="updateDeptChildren" parameterType="java.util.List">
+        update sys_dept set ancestors =
+        <foreach collection="depts" item="item" index="index"
+                 separator=" " open="case dept_id" close="end">
+            when #{item.deptId} then #{item.ancestors}
+        </foreach>
+        where dept_id in
+        <foreach collection="depts" item="item" index="index"
+                 separator="," open="(" close=")">
+            #{item.deptId}
+        </foreach>
+    </update>
 </mapper>
