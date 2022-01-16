@@ -1,8 +1,11 @@
 package cn.van.mall.system.mapper;
 
 import cn.van.mall.system.entity.SysUserRoleDO;
+import cn.van.mall.system.param.SysUserRoleParam;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * Copyright (C), 2017-2022, 风尘博客
@@ -16,4 +19,17 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SysUserRoleMapper extends BaseMapper<SysUserRoleDO> {
 
+    /**
+     *  desc
+     * @param param
+     * @return
+     */
+    int deleteUserRoleData(SysUserRoleParam param);
+
+    /**
+     * desc
+     * @param params
+     * @return
+     */
+    int insertBatch(List<SysUserRoleParam> params);
 }
