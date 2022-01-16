@@ -22,27 +22,27 @@ public interface SysUserMapper extends BaseMapper<SysUserDO> {
     /**
      * 根据条件查询用户列表（分页也可调用该方法）
      *
-     * @param model 用户信息
+     * @param param 用户信息
      * @return 用户信息集合信息
      */
-    List<SysUserDO> selectUserList(SysUserParam model);
+    List<SysUserDO> selectUserList(SysUserParam param);
 
 
     /**
      * 根据条件查询已分配某一角色的用户列表
      *
-     * @param model 用户信息 + roleId(必填项)
+     * @param param 用户信息 + roleId(必填项)
      * @return 用户信息集合信息
      */
-    List<SysUserDO> selectAllocatedUserList(SysUserParam model);
+    List<SysUserDO> selectAllocatedUserList(SysUserParam param);
 
     /**
      * 未分配该角色的其他用户列表
      *
-     * @param model 用户信息 + roleId(非填项)
+     * @param param 用户信息 + roleId(非填项)
      * @return 用户信息集合信息
      */
-    List<SysUserDO> selectUnassignedUserList(SysUserParam model);
+    List<SysUserDO> selectUnassignedUserList(SysUserParam param);
 
     /**
      * 根据id和名称查询用户
